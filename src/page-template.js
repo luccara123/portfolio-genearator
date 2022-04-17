@@ -1,4 +1,5 @@
 // create the about section
+// create the about section
 const generateAbout = aboutText => {
   if (!aboutText) {
     return '';
@@ -18,7 +19,6 @@ const generateProjects = projectsArr => {
       <h2 class="text-dark bg-primary p-2 display-inline-block">Work</h2>
       <div class="flex-row justify-space-between">
       ${projectsArr
-        // get array of just featured projects
         .filter(({ feature }) => feature)
         .map(({ name, description, languages, link }) => {
           return `
@@ -36,7 +36,6 @@ const generateProjects = projectsArr => {
         .join('')}
 
       ${projectsArr
-        // get array of all non-featured projects
         .filter(({ feature }) => !feature)
         .map(({ name, description, languages, link }) => {
           return `
@@ -57,12 +56,9 @@ const generateProjects = projectsArr => {
   `;
 };
 
-
 module.exports = templateData => {
   // destructure page data by section
-  const { projects, about, ...header } = templateData; // ...rest operator
-   // destructure projects and about data from templateData based on their property key names
-  // this will create three variables based on data in templateData
+  const { projects, about, ...header } = templateData;
 
   return `
   <!DOCTYPE html>
@@ -90,8 +86,8 @@ module.exports = templateData => {
       </div>
     </header>
     <main class="container my-5">
-      ${generateAbout(about)}
-      ${generateProjects(projects)}
+    ${generateAbout(about)}
+    ${generateProjects(projects)}
     </main>
     <footer class="container text-center py-3">
       <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${header.name}</h3>
